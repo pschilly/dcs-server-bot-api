@@ -34,13 +34,11 @@ php artisan dcs-server-bot-api:install
 php artisan dcs-server-bot-api:install --url="http://localhost:9867" [--force]
 ```
 
-you can publish the config file with:
+Although possible, it is not necessary to publish the config file given that the singular config parameter is pulled from your applications .env. Never the less, this is the command and contents of the published config file:
 
 ```bash
 php artisan vendor:publish --tag="dcs-server-bot-api-config"
 ```
-
-Although possible, it is not necessary as the singular config parameter is pulled from your applications .env. Never the less, this is the contents of the published config file:
 
 ```php
 return [
