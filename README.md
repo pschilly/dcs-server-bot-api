@@ -1,6 +1,6 @@
 # Laravel DCS Server Bot API Service
 
-![Packagist Version](https://img.shields.io/packagist/v/pschilly/dcs-server-bot-api?style=for-the-badge)
+[![Packagist Version]](https://img.shields.io/packagist/v/pschilly/dcs-server-bot-api?style=for-the-badge)[https://packagist.org/packages/pschilly/dcs-server-bot-api]
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/pschilly/dcs-server-bot-api/fix-php-code-style-issues.yml?branch=main&style=for-the-badge)
 [![DCSServerBot](https://img.shields.io/badge/🤖_Requires-DCS_Server_Bot-green?style=for-the-badge)](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot)
 ![Laravel v12 Required](https://img.shields.io/badge/Laravel-v12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
