@@ -21,7 +21,7 @@ class DcsServerBotApiCommand extends Command
 
         // Normalize the API URL
         if (! preg_match('/^https?:\/\//', $apiUrl)) {
-            $apiUrl = 'http://' . $apiUrl;
+            $apiUrl = 'http://'.$apiUrl;
         }
         // Add default port if not present
         $parsed = parse_url($apiUrl);
@@ -48,10 +48,10 @@ class DcsServerBotApiCommand extends Command
             $array =
                 [
                     'Current Value' => $currentValue,
-                    'New Value' => $apiUrl
+                    'New Value' => $apiUrl,
                 ];
 
-            if (!$force) {
+            if (! $force) {
                 $this->newLine();
                 $this->alert('WARNING: You are about to overwrite the existing DCS_BOT_API_URL!');
                 $this->question('Are you sure you want to overwrite the existing URL?');
@@ -59,7 +59,7 @@ class DcsServerBotApiCommand extends Command
                     ['Current Config', 'Newly Provided'],
                     [$array]
                 );
-                if (!$this->confirm('Proceed?', false)) {
+                if (! $this->confirm('Proceed?', false)) {
                     $this->info('No changes made.');
 
                     return self::SUCCESS;
