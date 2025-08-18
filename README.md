@@ -1,8 +1,9 @@
 # Laravel DCS Server Bot API Service
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/pschilly/dcs-server-bot-api.svg?style=flat-square)](https://packagist.org/packages/pschilly/laravel-dcs-server-bot-api)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/pschilly/laravel-dcs-server-bot-api/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/pschilly/laravel-dcs-server-bot-api/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/pschilly/dcs-server-bot-api.svg?style=flat-square)](https://packagist.org/packages/pschilly/laravel-dcs-server-bot-api)
+![Packagist Version](https://img.shields.io/packagist/v/pschilly/dcs-server-bot-api?style=for-the-badge)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/pschilly/dcs-server-bot-api/fix-php-code-style-issues.yml?branch=main&style=for-the-badge)
+[![DCSServerBot](https://img.shields.io/badge/🤖_Requires-DCS_Server_Bot-green?style=for-the-badge)](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot)
+![Laravel v12 Required](https://img.shields.io/badge/Laravel-v12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 This package acts as an interface service for the DCS Server Bot RestAPI in order to access information from the bot on a remote web server for display purposes.
 
