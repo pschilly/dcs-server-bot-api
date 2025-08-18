@@ -15,26 +15,26 @@ class DcsServerBotApiCommand extends Command
         $apiUrl = $this->argument('apiUrl');
         $force = $this->option('force');
 
-        if (!$apiUrl) {
+        if (! $apiUrl) {
             $apiUrl = $this->ask('Enter the DCS Server Bot Websockets API URL, include the port # if applicable. EG: http://localhost:9876');
         }
 
         // Normalize the API URL
-        if (!preg_match('/^https?:\/\//', $apiUrl)) {
-            $apiUrl = 'http://' . $apiUrl;
+        if (! preg_match('/^https?:\/\//', $apiUrl)) {
+            $apiUrl = 'http://'.$apiUrl;
         }
         // Add default port if not present
         $parsed = parse_url($apiUrl);
         if (
-            (!isset($parsed['port']) || empty($parsed['port'])) &&
-            !preg_match('/:\d+$/', $apiUrl)
+            (! isset($parsed['port']) || empty($parsed['port'])) &&
+            ! preg_match('/:\d+$/', $apiUrl)
         ) {
             $apiUrl = rtrim($apiUrl, '/');
             $apiUrl .= ':9876';
         }
 
         $envPath = base_path('.env');
-        $comment = "# DCS Server Bot Websockets API URL";
+        $comment = '# DCS Server Bot Websockets API URL';
 
         $envContent = file_exists($envPath) ? file_get_contents($envPath) : '';
 
@@ -44,10 +44,11 @@ class DcsServerBotApiCommand extends Command
             if (preg_match('/^DCS_BOT_API_URL=(.*)$/m', $envContent, $valMatch)) {
                 $currentValue = $valMatch[1];
             }
-            if (!$force) {
+            if (! $force) {
                 $this->info("DCS_BOT_API_URL is already set to: {$currentValue}");
-                if (!$this->confirm('Do you want to overwrite it?', false)) {
+                if (! $this->confirm('Do you want to overwrite it?', false)) {
                     $this->info('No changes made.');
+
                     return self::SUCCESS;
                 }
             }
@@ -63,7 +64,7 @@ class DcsServerBotApiCommand extends Command
         }
 
         file_put_contents($envPath, $envContent);
-        $this->info("DCS_BOT_API_URL set in .env file.");
+        $this->info('DCS_BOT_API_URL set in .env file.');
 
         return self::SUCCESS;
     }
