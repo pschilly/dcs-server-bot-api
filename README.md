@@ -19,9 +19,9 @@ Setup you API url:
 
 ```bash
 php artisan dci-server-bot-api:install
+```
 
--or-
-
+```bash
 php artisan dci-server-bot-api:install --url="http://localhost:9867" [--force]
 ```
 
