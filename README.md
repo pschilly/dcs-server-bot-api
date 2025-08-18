@@ -39,10 +39,9 @@ you can publish the config file with:
 php artisan vendor:publish --tag="dcs-server-bot-api-config"
 ```
 
-This is the contents of the published config file:
+Although possible, it is not necessary as the singular config parameter is pulled from your applications .env. Never the less, this is the contents of the published config file:
 
 ```php
-// config for Pschilly/DcsServerBotApi
 return [
 
     /*
