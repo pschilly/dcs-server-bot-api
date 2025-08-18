@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Pschilly\LaravelDcsServerBotApi;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use Pschilly\LaravelDcsServerBotApi\Commands\LaravelDcsServerBotApiCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class LaravelDcsServerBotApiServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('laravel-dcs-server-bot-api')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_migration_table_name_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_laravel_dcs_server_bot_api_table')
+            ->hasCommand(LaravelDcsServerBotApiCommand::class);
     }
 }

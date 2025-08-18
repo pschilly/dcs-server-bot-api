@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Pschilly\LaravelDcsServerBotApi\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelDcsServerBotApiCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-dcs-server-bot-api';
 
     public $description = 'My command';
 

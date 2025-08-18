@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "pschilly/laravel-dcs-server-bot-api",
+    "description": "This package acts as an interface service for the DCS Server Bot RestAPI in order to access information from the bot on a remote web server for display purposes.",
     "keywords": [
-        ":vendor_name",
+        "Pschilly",
         "laravel",
-        ":package_slug"
+        "laravel-dcs-server-bot-api"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/pschilly/laravel-dcs-server-bot-api",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Schilly",
+            "email": "patrick@hardpointconsulting.ca",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Pschilly\\LaravelDcsServerBotApi\\": "src/",
+            "Pschilly\\LaravelDcsServerBotApi\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Pschilly\\LaravelDcsServerBotApi\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Pschilly\\LaravelDcsServerBotApi\\LaravelDcsServerBotApiServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelDcsServerBotApi": "Pschilly\\LaravelDcsServerBotApi\\Facades\\LaravelDcsServerBotApi"
             }
         }
     },
