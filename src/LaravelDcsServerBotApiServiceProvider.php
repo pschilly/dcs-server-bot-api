@@ -2,9 +2,9 @@
 
 namespace Pschilly\LaravelDcsServerBotApi;
 
+use Pschilly\LaravelDcsServerBotApi\Commands\LaravelDcsServerBotApiCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Pschilly\LaravelDcsServerBotApi\Commands\LaravelDcsServerBotApiCommand;
 
 class LaravelDcsServerBotApiServiceProvider extends PackageServiceProvider
 {
