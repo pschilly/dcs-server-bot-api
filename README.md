@@ -1,8 +1,8 @@
 # Laravel DCS Server Bot API Service
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/pschilly/laravel-dcs-server-bot-api.svg?style=flat-square)](https://packagist.org/packages/pschilly/laravel-dcs-server-bot-api)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/pschilly/dcs-server-bot-api.svg?style=flat-square)](https://packagist.org/packages/pschilly/laravel-dcs-server-bot-api)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/pschilly/laravel-dcs-server-bot-api/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/pschilly/laravel-dcs-server-bot-api/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/pschilly/laravel-dcs-server-bot-api.svg?style=flat-square)](https://packagist.org/packages/pschilly/laravel-dcs-server-bot-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/pschilly/dcs-server-bot-api.svg?style=flat-square)](https://packagist.org/packages/pschilly/laravel-dcs-server-bot-api)
 
 This package acts as an interface service for the DCS Server Bot RestAPI in order to access information from the bot on a remote web server for display purposes.
 
