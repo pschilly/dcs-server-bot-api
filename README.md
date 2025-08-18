@@ -19,8 +19,10 @@ Setup you API url:
 
 ```bash
 php artisan dci-server-bot-api:install
-or
-php artisan dci-server-bot-api:install --url="http://localhost:9867"
+
+-or-
+
+php artisan dci-server-bot-api:install --url="http://localhost:9867" [--force]
 ```
 
 you can publish the config file with:
