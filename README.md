@@ -12,47 +12,49 @@ This package acts as an interface service for the DCS Server Bot RestAPI in orde
 You can install the package via composer:
 
 ```bash
-composer require pschilly/laravel-dcs-server-bot-api
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-dcs-server-bot-api-migrations"
-php artisan migrate
+composer require pschilly/dcs-server-bot-api
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-dcs-server-bot-api-config"
+php artisan vendor:publish --tag="dcs-server-bot-api-config"
 ```
 
 This is the contents of the published config file:
 
 ```php
+// config for Pschilly/DcsServerBotApi
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | DCS Bot API URL
+    |--------------------------------------------------------------------------
+    |
+    | This value is the base URL for the DCS Bot API, which will be used when
+    | making requests to the API endpoints.
+    |
+    | See documentation of DCS Server Bot API for more details & configuration on your actual DCS Server Bot.
+    |   WebService: https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot/blob/master/services/webservice/README.md
+    |   RestAPI: https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot/blob/master/plugins/restapi/README.md
+    |
+    */
+
+    'base_url' => env('DCS_BOT_API_URL', 'http://localhost:9876'),
+
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-dcs-server-bot-api-views"
 ```
 
 ## Usage
 
-```php
-$laravelDcsServerBotApi = new Pschilly\LaravelDcsServerBotApi();
-echo $laravelDcsServerBotApi->echoPhrase('Hello, Pschilly!');
-```
+### Setup the API URL in your .env File
 
-## Testing
+-   Use the command `php artisan dci-server-bot-api:install` and follow the prompts, or, `php artisan dci-server-bot-api:install http://localhost:9876` to skip the prompts.
 
-```bash
-composer test
-```
+### Access the individual Rest API calls
+
+-   Check the Wiki for more information.
 
 ## Changelog
 
@@ -68,8 +70,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Schilly](https://github.com/pschilly)
-- [All Contributors](../../contributors)
+-   [Schilly](https://github.com/pschilly)
+-   [All Contributors](../../contributors)
 
 ## License
 
