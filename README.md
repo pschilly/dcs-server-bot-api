@@ -66,12 +66,6 @@ return [
 
 ## Usage
 
-### Setup the API URL in your .env File
-
--   Use the command ``and follow the prompts, or,`php artisan dci-server-bot-api:install http://localhost:9876` to skip the prompts.
-
-### Access the individual Rest API calls
-
 -   Check the Wiki for more information.
 
 ## Changelog
