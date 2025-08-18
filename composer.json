@@ -1,12 +1,12 @@
 {
-    "name": "pschilly/laravel-dcs-server-bot-api",
+    "name": "pschilly/dcs-server-bot-api",
     "description": "This package acts as an interface service for the DCS Server Bot RestAPI in order to access information from the bot on a remote web server for display purposes.",
     "keywords": [
         "Pschilly",
         "laravel",
-        "laravel-dcs-server-bot-api"
+        "dcs-server-bot-api"
     ],
-    "homepage": "https://github.com/pschilly/laravel-dcs-server-bot-api",
+    "homepage": "https://github.com/pschilly/dcs-server-bot-api",
     "license": "MIT",
     "authors": [
         {
@@ -35,13 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Pschilly\\LaravelDcsServerBotApi\\": "src/",
-            "Pschilly\\LaravelDcsServerBotApi\\Database\\Factories\\": "database/factories/"
+            "Pschilly\\DcsServerBotApi\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Pschilly\\LaravelDcsServerBotApi\\Tests\\": "tests/",
+            "Pschilly\\DcsServerBotApi\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Pschilly\\LaravelDcsServerBotApi\\LaravelDcsServerBotApiServiceProvider"
+                "Pschilly\\DcsServerBotApi\\DcsServerBotApiServiceProvider"
             ],
             "aliases": {
-                "LaravelDcsServerBotApi": "Pschilly\\LaravelDcsServerBotApi\\Facades\\LaravelDcsServerBotApi"
+                "DcsServerBotApi": "Pschilly\\DcsServerBotApi\\Facades\\DcsServerBotApi"
             }
         }
     },

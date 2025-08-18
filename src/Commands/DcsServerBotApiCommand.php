@@ -1,12 +1,12 @@
 <?php
 
-namespace Pschilly\LaravelDcsServerBotApi\Commands;
+namespace Pschilly\DcsServerBotApi\Commands;
 
 use Illuminate\Console\Command;
 
-class LaravelDcsServerBotApiCommand extends Command
+class DcsServerBotApiCommand extends Command
 {
-    public $signature = 'laravel-dcs-server-bot-api';
+    public $signature = 'dcs-server-bot-api';
 
     public $description = 'My command';
 

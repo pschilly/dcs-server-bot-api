@@ -1,5 +1,5 @@
 <?php
 
-use Pschilly\LaravelDcsServerBotApi\Tests\TestCase;
+use Pschilly\DcsServerBotApi\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

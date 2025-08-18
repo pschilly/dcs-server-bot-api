@@ -1,26 +1,21 @@
 <?php
 
-namespace Pschilly\LaravelDcsServerBotApi\Tests;
+namespace Pschilly\DcsServerBotApi\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Pschilly\LaravelDcsServerBotApi\LaravelDcsServerBotApiServiceProvider;
+use Pschilly\LaravelDcsServerBotApi\DcsServerBotApiServiceProvider;
 
 class TestCase extends Orchestra
 {
     protected function setUp(): void
     {
         parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Pschilly\\LaravelDcsServerBotApi\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            LaravelDcsServerBotApiServiceProvider::class,
+            DcsServerBotApiServiceProvider::class,
         ];
     }
 
