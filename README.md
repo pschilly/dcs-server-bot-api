@@ -27,11 +27,11 @@ In order for the service to know where to make the API calls you must identify w
 To alter this default URL, run one of the following commands:
 
 ```bash
-php artisan dci-server-bot-api:install
+php artisan dcs-server-bot-api:install
 ```
 
 ```bash
-php artisan dci-server-bot-api:install --url="http://localhost:9867" [--force]
+php artisan dcs-server-bot-api:install --url="http://localhost:9867" [--force]
 ```
 
 you can publish the config file with:
