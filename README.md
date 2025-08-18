@@ -7,6 +7,11 @@
 
 This package acts as an interface service for the DCS Server Bot RestAPI in order to access information from the bot on a remote web server for display purposes.
 
+In order for this to be function, you must already have the [DCS Server Bot](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot) setup and running, including the following plugin / service:
+
+-   RestAPI [Docs](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot/blob/master/plugins/restapi/README.md)
+-   WebService [Docs](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot/blob/master/services/webservice/README.md)
+
 ## Installation
 
 You can install the package via composer:
@@ -15,7 +20,11 @@ You can install the package via composer:
 composer require pschilly/dcs-server-bot-api
 ```
 
-Setup you API url:
+## Configuration
+
+In order for the service to know where to make the API calls you must identify where the API server is located. By default, the service will look for `http://localhost:9876` - this is only going to be useful if you are running your website on the same server as the **master node** of the DCS Server bot.
+
+To alter this default URL, run one of the following commands:
 
 ```bash
 php artisan dci-server-bot-api:install
