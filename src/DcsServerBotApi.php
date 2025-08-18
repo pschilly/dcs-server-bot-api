@@ -51,8 +51,7 @@ class DcsServerBotApi
      * - Total Sorties 
      * 
      * @api_endpoint /serverstats
-     * @method GET
-     * @return json
+     * @return array as json
      * @param string|null $server_name - limit the response to a specific server in your cluster.
      */
     public static function getServerStats(?string $server_name = null): array
@@ -83,8 +82,7 @@ class DcsServerBotApi
      * - Status
      * 
      * @api_endpoint /servers
-     * @method GET
-     * @return json
+     * @return array as json
      */
     public static function getServerList(): array
     {
@@ -97,8 +95,7 @@ class DcsServerBotApi
      * List of all squadrons and their roles.
      *
      * @api_endpoint /squadrons
-     * @method GET
-     * @return json
+     * @return array as json
      */
     public static function getSquadronList(): array
     {
@@ -111,13 +108,12 @@ class DcsServerBotApi
      * List of all members in a specific squadron.
      *
      * @api_endpoint /squadron_members
-     * @method POST
      * @param string $squadronName [required]
-     * @return json
+     * @return array as json
      */
     public static function getSquadronMembers(string $squadronName): array
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl(), ['name' => $squadronName])->post('/squadron_members');
+        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/squadron_members', ['name' => $squadronName]);
         return $response->json();
     }
 
@@ -126,13 +122,12 @@ class DcsServerBotApi
      * Retrieve information about a specific user.
      *
      * @api_endpoint /getuser
-     * @method POST
      * @param string $nick [required|wild]
-     * @return json
+     * @return array as json
      */
     public static function getUser(string $nick): array
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl(), ['nick' => $nick])->post('/getuser');
+        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/getuser', ['nick' => $nick]);
         return $response->json();
     }
 
@@ -141,10 +136,9 @@ class DcsServerBotApi
      * Link a players Discord and DCS IDs in the Discord Bot
      *
      * @api_endpoint /linkme
-     * @method POST
      * @param string $discord_id [required] - Discord ID of the player.
      * @param bool|null $force - Force the operation.
-     * @return json
+     * @return array as json
      *  {
      *      "rc": 2,
      *      "timestamp": "2025-08-09T12:00:00+00:00",
@@ -165,15 +159,14 @@ class DcsServerBotApi
      * Retrieve the list of squadrons for a specific player.
      *
      * @api_endpoint /player_squadrons
-     * @method POST
      * @param string $nick [required] - Actual name of the player. Get with $this->getUser($nick)
      * @param string|null $date - Limit the response to a specific date.
-     * @return json
+     * @return array as json
      */
-    public static function getPlayerSquadrons(string $name, ?string $date = null): array
+    public static function getPlayerSquadrons(string $nick, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/player_squadrons', [
-            'name' => $name,
+            'nick' => $nick,
             'date' => $date
         ]);
         return $response->json();
@@ -184,10 +177,9 @@ class DcsServerBotApi
      * Retrieve the top kills for a specific server or user.
      *
      * @api_endpoint /topkills
-     * @method GET
      * @param int|null $limit - Limit the returned results to a specific number.
      * @param string|null $server_name - limit the response to a specific server in your cluster.
-     * @return json
+     * @return array as json
      */
     public static function getTopKills(?int $limit = null, ?string $server_name = null): array
     {
@@ -203,10 +195,9 @@ class DcsServerBotApi
      * Retrieve the top KDR (Kill/Death Ratio) for a specific server or user.
      *
      * @api_endpoint /topkdr
-     * @method GET
      * @param int|null $limit - Limit the returned results to a specific number.
      * @param string|null $server_name - limit the response to a specific server in your cluster.
-     * @return json
+     * @return array as json
      */
     public static function getTopKDR(?int $limit = null, ?string $server_name = null): array
     {
@@ -224,10 +215,9 @@ class DcsServerBotApi
      * REQUIRES: "Competitive" plugin enabled on the Server Bot. 
      * 
      * @api_endpoint /trueskill
-     * @method GET
      * @param int|null $limit
      * @param string|null $server_name - limit the response to a specific server in your cluster.
-     * @return json
+     * @return array as json
      */
     public static function getTrueSkillStats(?int $limit = null, ?string $server_name = null): array
     {
@@ -243,11 +233,10 @@ class DcsServerBotApi
      * Retrieve the weapon PK (Probability of Kill) statistics for all weapons for a specific user.
      *
      * @api_endpoint /weaponpk
-     * @method POST
      * @param string $nick [required] - Actual nickname of the user. Get with $this->getUser($nick)
      * @param string|null $date - Limit the response to a specific date.
      * @param string|null $server_name - limit the response to a specific server in your cluster.
-     * @return json
+     * @return array as json
      */
     public static function getWeaponPK(string $nick, ?string $date = null, ?string $server_name = null): array
     {
@@ -264,11 +253,10 @@ class DcsServerBotApi
      * Retrieve the player statistics for a specific user.
      *
      * @api_endpoint /stats
-     * @method POST
      * @param string $nick [required] - Actual nickname of the user. Get with $this->getUser($nick)
      * @param string|null $date - Limit the response to a specific date.
      * @param string|null $server_name - limit the response to a specific server in your cluster.
-     * @return json
+     * @return array as json
      */
     public static function getStats(string $nick, ?string $date = null, ?string $server_name = null): array
     {
@@ -285,11 +273,10 @@ class DcsServerBotApi
      * Retrieve the player information for a specific user.
      *
      * @api_endpoint /player_info
-     * @method POST
      * @param string $nick [required] - Actual nickname of the user. Get with $this->getUser($nick)
      * @param string|null $date - Limit the response to a specific date.
      * @param string|null $server_name - limit the response to a specific server in your cluster.
-     * @return json
+     * @return array as json
      */
     public static function getPlayerInfo(string $nick, ?string $date = null, ?string $server_name = null): array
     {
@@ -306,11 +293,10 @@ class DcsServerBotApi
      * Retrieve the highscore board for a specific game mode.
      *
      * @api_endpoint /highscore
-     * @method GET
      * @param string|null $server_name - Limit the response to a specific server in your cluster.
      * @param string|null $period - Limit the response to a specific time period.
      * @param int|null $limit - Limit the number of results returned.
-     * @return json
+     * @return array as json
      */
     public static function getHighscore(?string $server_name = null, ?string $period = null, ?int $limit = null): array
     {
@@ -327,12 +313,11 @@ class DcsServerBotApi
      * Retrieve the traps statistics for a specific user.
      *
      * @api_endpoint /traps
-     * @method POST
      * @param string $nick [required] - Actual nickname of the user. Get with $this->getUser($nick)
      * @param string|null $date - Limit the response to a specific date.
      * @param int|null $limit - Limit the number of results returned.
      * @param string|null $server_name - limit the response to a specific server in your cluster.
-     * @return json
+     * @return array as json
      */
     public static function getTraps(string $nick, ?string $date = null, ?int $limit = null, ?string $server_name = null): array
     {
@@ -350,11 +335,10 @@ class DcsServerBotApi
      * Retrieve the credits information for a specific user including the campaign
      *
      * @api_endpoint /credits
-     * @method POST
      * @param string $nick [required] - Actual nickname of the user. Get with $this->getUser($nick)
      * @param string|null $date - Limit the response to a specific date.
      * @param string|null $campaign - limit the response to a specific campaign.
-     * @return json
+     * @return array as json
      */
     public static function getCredits(string $nick, ?string $date = null, ?string $campaign = null): array
     {
@@ -371,10 +355,9 @@ class DcsServerBotApi
      * Retrieve the squadron credits information for a specific user including the campaign
      *
      * @api_endpoint /squadron_credits
-     * @method POST
      * @param string $name [required] - Actual name of the squadron.
      * @param string|null $campaign - limit the response to a specific campaign.
-     * @return json
+     * @return array as json
      */
     public static function getSquadronCredits(string $name, ?string $campaign = null): array
     {
