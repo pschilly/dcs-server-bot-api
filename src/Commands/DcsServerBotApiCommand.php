@@ -6,13 +6,13 @@ use Illuminate\Console\Command;
 
 class DcsServerBotApiCommand extends Command
 {
-    public $signature = 'dcs-server-bot-api:install {apiUrl?} {--force : Overwrite existing value without confirmation}';
+    public $signature = 'dcs-server-bot-api:install {--url= : The DCS Server Bot Websockets API URL} {--force : Overwrite existing value without confirmation}';
 
     public $description = 'Config the DCS Server Bot API by adding the DCS Server Bot Websockets URL to the .env';
 
     public function handle(): int
     {
-        $apiUrl = $this->argument('apiUrl');
+        $apiUrl = $this->option('url');
         $force = $this->option('force');
 
         if (!$apiUrl) {
@@ -44,9 +44,22 @@ class DcsServerBotApiCommand extends Command
             if (preg_match('/^DCS_BOT_API_URL=(.*)$/m', $envContent, $valMatch)) {
                 $currentValue = $valMatch[1];
             }
+
+            $array =
+                [
+                    'Current Value' => $currentValue,
+                    'New Value' => $apiUrl
+                ];
+
             if (!$force) {
-                $this->info("DCS_BOT_API_URL is already set to: {$currentValue}");
-                if (!$this->confirm('Do you want to overwrite it?', false)) {
+                $this->newLine();
+                $this->alert('WARNING: You are about to overwrite the existing DCS_BOT_API_URL!');
+                $this->question('Are you sure you want to overwrite the existing URL?');
+                $this->table(
+                    ['Current Config', 'Newly Provided'],
+                    [$array]
+                );
+                if (!$this->confirm('Proceed?', false)) {
                     $this->info('No changes made.');
                     return self::SUCCESS;
                 }

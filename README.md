@@ -15,7 +15,15 @@ You can install the package via composer:
 composer require pschilly/dcs-server-bot-api
 ```
 
-You can publish the config file with:
+Setup you API url:
+
+```bash
+php artisan dci-server-bot-api:install
+or
+php artisan dci-server-bot-api:install --url="http://localhost:9867"
+```
+
+you can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="dcs-server-bot-api-config"
@@ -50,7 +58,7 @@ return [
 
 ### Setup the API URL in your .env File
 
--   Use the command `php artisan dci-server-bot-api:install` and follow the prompts, or, `php artisan dci-server-bot-api:install http://localhost:9876` to skip the prompts.
+-   Use the command ``and follow the prompts, or,`php artisan dci-server-bot-api:install http://localhost:9876` to skip the prompts.
 
 ### Access the individual Rest API calls
 
