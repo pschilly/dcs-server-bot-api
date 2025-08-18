@@ -17,6 +17,6 @@ return [
     |
     */
 
-    'base_url' => config('DCSBOT_API_URL', 'http://localhost:9876'),
+    'base_url' => env('DCS_BOT_API_URL', 'http://localhost:9876'),
 
 ];
