@@ -64,7 +64,21 @@ return [
 
 ## Usage
 
--   Check the Wiki for more information.
+Import the model:
+```php
+use Pschilly\DcsServerBotApi\DcsServerBotApi;
+```
+
+Call the endpoint that you need based on the [DCS Server Bot RestAPI Docs](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot/blob/master/plugins/restapi/README.md), eg:
+
+```php
+$data = DcsServerBotApi::getServerStats();
+```
+
+This will give you a json array that you can then do with what you please!
+
+For more information on the API - you can enable "debug" mode on your WebService plugin where you will then be able to hit the API server with the following link `http://localhost:9678/docs` and get a full rundown on the API calls.
+
 
 ## Changelog
 
