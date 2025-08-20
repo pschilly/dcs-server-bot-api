@@ -62,7 +62,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -96,7 +96,7 @@ class DcsServerBotApi
         $response = Http::baseUrl(self::getBaseUrl())->get('/servers');
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -118,7 +118,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -138,7 +138,7 @@ class DcsServerBotApi
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/squadron_members', ['name' => $squadronName]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -158,7 +158,7 @@ class DcsServerBotApi
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/getuser', ['nick' => $nick]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -187,7 +187,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -211,7 +211,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -242,7 +242,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -267,7 +267,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -293,7 +293,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -319,7 +319,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -345,7 +345,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -371,7 +371,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -397,7 +397,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -426,7 +426,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -452,7 +452,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
@@ -476,7 +476,7 @@ class DcsServerBotApi
         ]);
 
         if ($returnType === 'collection') {
-            return $response->collect()
+            return $response->collect();
         }
 
         return $response->json();
