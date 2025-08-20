@@ -233,7 +233,7 @@ class DcsServerBotApi
      * @param  string  $returnType  'json' (default) or 'collection'
      * @return array|\Illuminate\Support\Collection
      */
-    public static function getTopKills(?string $server_name = null, ?int $limit = 10, ?int $offset = null, string $returnType = 'json'): mixed
+    public static function getTopKills(?string $server_name = null, ?int $limit = null, ?int $offset = null, string $returnType = 'json'): mixed
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/topkills', [
             'server_name' => $server_name,
@@ -258,7 +258,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return mixed json|collection
      */
-    public static function getTopKDR(?string $server_name = null, ?int $limit = 10, ?int $offset = null, string $returnType = 'json'): mixed
+    public static function getTopKDR(?string $server_name = null, ?int $limit = null, ?int $offset = null, string $returnType = 'json'): mixed
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/topkdr', [
             'server_name' => $server_name,
@@ -284,7 +284,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return mixed json|collection
      */
-    public static function getTrueSkillStats(?string $server_name = null, ?int $limit = 10, ?int $offset = null, string $returnType = 'json'): mixed
+    public static function getTrueSkillStats(?string $server_name = null, ?int $limit = null, ?int $offset = null, string $returnType = 'json'): mixed
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/trueskill', [
             'server_name' => $server_name,
@@ -388,7 +388,7 @@ class DcsServerBotApi
      * @param  int|null  $limit  - Limit the number of results returned.
      * @return mixed json|collection
      */
-    public static function getHighscore(?string $server_name = null, ?int $limit = 10, ?string $period = null, string $returnType = 'json'): mixed
+    public static function getHighscore(?string $server_name = null, ?int $limit = null, ?string $period = null, string $returnType = 'json'): mixed
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/highscore', [
             'server_name' => $server_name,
@@ -415,7 +415,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return mixed json|collection
      */
-    public static function getTraps(string $nick, ?string $server_name = null, ?int $limit = 10, ?int $offset = null, ?string $date = null, string $returnType = 'json'): mixed
+    public static function getTraps(string $nick, ?string $server_name = null, ?int $limit = null, ?int $offset = null, ?string $date = null, string $returnType = 'json'): mixed
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/traps', [
             'nick' => $nick,
