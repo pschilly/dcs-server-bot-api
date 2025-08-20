@@ -1,9 +1,9 @@
 # Laravel DCS Server Bot API Service
 
-![Packagist Version](https://img.shields.io/packagist/v/pschilly/dcs-server-bot-api?style=for-the-badge)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/pschilly/dcs-server-bot-api/fix-php-code-style-issues.yml?branch=main&style=for-the-badge)
+[![Packagist Version](https://img.shields.io/packagist/v/pschilly/dcs-server-bot-api?style=for-the-badge)](https://packagist.org/packages/pschilly/dcs-server-bot-api)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/pschilly/dcs-server-bot-api/fix-php-code-style-issues.yml?branch=main&style=for-the-badge)](https://github.com/pschilly/dcs-server-bot-api/actions/workflows/phpstan.yml)
 [![DCSServerBot](https://img.shields.io/badge/🤖_Requires-DCS_Server_Bot-green?style=for-the-badge)](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot)
-![Laravel v12 Required](https://img.shields.io/badge/Laravel-v12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+[![Laravel v12 Required](https://img.shields.io/badge/Laravel-v12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 
 This package acts as an interface service for the DCS Server Bot RestAPI in order to access information from the bot on a remote web server for display purposes.
 
@@ -27,20 +27,18 @@ In order for the service to know where to make the API calls you must identify w
 To alter this default URL, run one of the following commands:
 
 ```bash
-php artisan dci-server-bot-api:install
+php artisan dcs-server-bot-api:install
 ```
 
 ```bash
-php artisan dci-server-bot-api:install --url="http://localhost:9867" [--force]
+php artisan dcs-server-bot-api:install --url="http://localhost:9867" [--force]
 ```
 
-you can publish the config file with:
+Although possible, it is not necessary to publish the config file given that the singular config parameter is pulled from your applications .env. Never the less, this is the command and contents of the published config file:
 
 ```bash
 php artisan vendor:publish --tag="dcs-server-bot-api-config"
 ```
-
-Although possible, it is not necessary as the singular config parameter is pulled from your applications .env. Never the less, this is the contents of the published config file:
 
 ```php
 return [
@@ -66,7 +64,21 @@ return [
 
 ## Usage
 
--   Check the Wiki for more information.
+Import the model:
+```php
+use Pschilly\DcsServerBotApi\DcsServerBotApi;
+```
+
+Call the endpoint that you need based on the [DCS Server Bot RestAPI Docs](https://github.com/Special-K-s-Flightsim-Bots/DCSServerBot/blob/master/plugins/restapi/README.md), eg:
+
+```php
+$data = DcsServerBotApi::getServerStats();
+```
+
+This will give you a json array that you can then do with what you please!
+
+For more information on the API - you can enable "debug" mode on your WebService plugin where you will then be able to hit the API server with the following link `http://localhost:9678/docs` and get a full rundown on the API calls.
+
 
 ## Changelog
 
