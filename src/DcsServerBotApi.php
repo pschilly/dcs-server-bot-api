@@ -353,7 +353,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getTraps(?string $server_name = null, string $nick, ?int $limit = 10, ?int $offset = null, ?string $date = null): array
+    public static function getTraps(?string $server_name, string $nick, ?int $limit = 10, ?int $offset = null, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/traps', [
             'nick' => $nick,
