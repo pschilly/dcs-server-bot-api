@@ -204,7 +204,7 @@ class DcsServerBotApi
         $response = Http::baseUrl(self::getBaseUrl())->get('/topkills', [
             'server_name' => $server_name,
             'limit' => $limit,
-            'offset' => $offset
+            'offset' => $offset,
         ]);
 
         return $response->json();
@@ -225,7 +225,7 @@ class DcsServerBotApi
         $response = Http::baseUrl(self::getBaseUrl())->get('/topkdr', [
             'server_name' => $server_name,
             'limit' => $limit,
-            'offset' => $offset
+            'offset' => $offset,
         ]);
 
         return $response->json();
@@ -247,7 +247,7 @@ class DcsServerBotApi
         $response = Http::baseUrl(self::getBaseUrl())->get('/trueskill', [
             'server_name' => $server_name,
             'limit' => $limit,
-            'offset' => $offset
+            'offset' => $offset,
         ]);
 
         return $response->json();
@@ -264,7 +264,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getWeaponPK(?string $server_name = null, string $nick, ?string $date = null): array
+    public static function getWeaponPK(?string $server_name, string $nick, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/weaponpk', [
             'nick' => $nick,
@@ -286,7 +286,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getStats(?string $server_name = null, string $nick, ?string $date = null): array
+    public static function getStats(?string $server_name, string $nick, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/stats', [
             'nick' => $nick,
@@ -308,7 +308,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getPlayerInfo(?string $server_name = null, string $nick, ?string $date = null): array
+    public static function getPlayerInfo(?string $server_name, string $nick, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/player_info', [
             'nick' => $nick,
