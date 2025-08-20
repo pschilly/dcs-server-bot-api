@@ -64,6 +64,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -97,6 +98,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -118,6 +120,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -137,6 +140,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -156,6 +160,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -184,6 +189,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -207,6 +213,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -223,10 +230,7 @@ class DcsServerBotApi
     /**
      * Get top kills for a server.
      *
-     * @param string|null $server_name
-     * @param int|null $limit
-     * @param int|null $offset
-     * @param string $returnType 'json' (default) or 'collection'
+     * @param  string  $returnType  'json' (default) or 'collection'
      * @return array|\Illuminate\Support\Collection
      */
     public static function getTopKills(?string $server_name = null, ?int $limit = 10, ?int $offset = null, string $returnType = 'json'): mixed
@@ -240,6 +244,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -264,6 +269,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -289,6 +295,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -314,6 +321,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -339,6 +347,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -364,6 +373,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -389,6 +399,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -417,6 +428,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -442,6 +454,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 
@@ -465,6 +478,7 @@ class DcsServerBotApi
         if ($returnType === 'collection') {
             return collect($response->json());
         }
+
         return $response->json();
     }
 }
