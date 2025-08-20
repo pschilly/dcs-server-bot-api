@@ -102,9 +102,12 @@ class DcsServerBotApi
      *
      * @return array as json
      */
-    public static function getSquadronList(): array
+    public static function getSquadronList(?int $limit = null, ?int $offset = null): array
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/squadrons');
+        $response = Http::baseUrl(self::getBaseUrl())->get('/squadrons', [
+            'limit' => $limit,
+            'offset' => $offset,
+        ]);
 
         return $response->json();
     }
@@ -196,11 +199,12 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getTopKills(?int $limit = null, ?string $server_name = null): array
+    public static function getTopKills(?string $server_name = null, ?int $limit = null, ?int $offset): array
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/topkills', [
-            'limit' => $limit,
             'server_name' => $server_name,
+            'limit' => $limit,
+            'offset' => $offset
         ]);
 
         return $response->json();
@@ -216,11 +220,12 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getTopKDR(?int $limit = null, ?string $server_name = null): array
+    public static function getTopKDR(?string $server_name = null, ?int $limit = null, ?int $offset = null): array
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/topkdr', [
-            'limit' => $limit,
             'server_name' => $server_name,
+            'limit' => $limit,
+            'offset' => $offset
         ]);
 
         return $response->json();
@@ -237,11 +242,12 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getTrueSkillStats(?int $limit = null, ?string $server_name = null): array
+    public static function getTrueSkillStats(?string $server_name = null, ?int $limit = null, ?int $offset = null): array
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/trueskill', [
-            'limit' => $limit,
             'server_name' => $server_name,
+            'limit' => $limit,
+            'offset' => $offset
         ]);
 
         return $response->json();
@@ -258,12 +264,12 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getWeaponPK(string $nick, ?string $date = null, ?string $server_name = null): array
+    public static function getWeaponPK(?string $server_name = null, string $nick, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/weaponpk', [
             'nick' => $nick,
-            'date' => $date,
             'server_name' => $server_name,
+            'date' => $date,
         ]);
 
         return $response->json();
@@ -280,7 +286,7 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getStats(string $nick, ?string $date = null, ?string $server_name = null): array
+    public static function getStats(?string $server_name = null, string $nick, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/stats', [
             'nick' => $nick,
@@ -302,12 +308,12 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getPlayerInfo(string $nick, ?string $date = null, ?string $server_name = null): array
+    public static function getPlayerInfo(?string $server_name = null, string $nick, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/player_info', [
             'nick' => $nick,
-            'date' => $date,
             'server_name' => $server_name,
+            'date' => $date,
         ]);
 
         return $response->json();
@@ -324,12 +330,12 @@ class DcsServerBotApi
      * @param  int|null  $limit  - Limit the number of results returned.
      * @return array as json
      */
-    public static function getHighscore(?string $server_name = null, ?string $period = null, ?int $limit = null): array
+    public static function getHighscore(?string $server_name = null, ?int $limit = null, ?string $period = null): array
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/highscore', [
             'server_name' => $server_name,
-            'period' => $period,
             'limit' => $limit,
+            'period' => $period,
         ]);
 
         return $response->json();
@@ -347,12 +353,13 @@ class DcsServerBotApi
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return array as json
      */
-    public static function getTraps(string $nick, ?string $date = null, ?int $limit = null, ?string $server_name = null): array
+    public static function getTraps(?string $server_name = null, string $nick, ?int $limit = null, ?int $offset = null, ?string $date = null): array
     {
         $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/traps', [
             'nick' => $nick,
             'date' => $date,
             'limit' => $limit,
+            'offset' => $offset,
             'server_name' => $server_name,
         ]);
 
