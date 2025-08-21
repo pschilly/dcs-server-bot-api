@@ -235,7 +235,7 @@ class DcsServerBotApi
      * @param  string  $returnType  'json' (default) or 'collection'
      * @return array|\Illuminate\Support\Collection
      */
-    public static function getLeaderboard(?string $what = 'kills', ?string $order = 'DESC', ?string $query = null, ?string $server_name = null, ?int $limit = 10, ?int $offset = 0, string $returnType = 'json'): mixed
+    public static function getLeaderboard(?string $what = 'kills', ?string $order = 'desc', ?string $query = null, ?string $server_name = null, ?int $limit = 10, ?int $offset = 0, string $returnType = 'json'): mixed
     {
         $response = Http::baseUrl(self::getBaseUrl())->get('/leaderboard', [
             'what' => $what,
