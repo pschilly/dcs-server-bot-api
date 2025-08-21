@@ -223,9 +223,9 @@ class DcsServerBotApi
      *
      * @api_endpoint /leaderboard
      *
-     * @param string $what - Sort Order [kills, deaths, kdr, kills_pvp, deaths_pvp, kdr_pvp]
+     * @param  string  $what  - Sort Order [kills, deaths, kdr, kills_pvp, deaths_pvp, kdr_pvp]
      * @param  int|null  $limit  - Limit the returned results to a specific number.
-     * @param int|null $offset - Offset for the limit, used for pagination
+     * @param  int|null  $offset  - Offset for the limit, used for pagination
      * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
      * @return mixed json|collection
      */
