@@ -218,6 +218,42 @@ class DcsServerBotApi
     }
 
     /**
+     * LEADERBOARD
+     * Retrieve the top kills for a specific server or user.
+     *
+     * @api_endpoint /leaderboard
+     *
+     * @param string $what - Sort Order [kills, deaths, kdr, kills_pvp, deaths_pvp, kdr_pvp]
+     * @param  int|null  $limit  - Limit the returned results to a specific number.
+     * @param int|null $offset - Offset for the limit, used for pagination
+     * @param  string|null  $server_name  - limit the response to a specific server in your cluster.
+     * @return mixed json|collection
+     */
+    /**
+     * Get top kills for a server.
+     *
+     * @param  string  $returnType  'json' (default) or 'collection'
+     * @return array|\Illuminate\Support\Collection
+     */
+    public static function getLeaderboard(?string $what = 'kills', ?string $order = 'DESC', ?string $query = null, ?string $server_name = null, ?int $limit = 10, ?int $offset = 0, string $returnType = 'json'): mixed
+    {
+        $response = Http::baseUrl(self::getBaseUrl())->get('/leaderboard', [
+            'what' => $what,
+            'order' => $order,
+            'query' => $query,
+            'limit' => $limit,
+            'offset' => $offset,
+            'server_name' => $server_name,
+        ]);
+
+        if ($returnType === 'collection') {
+            return $response->collect();
+        }
+
+        return $response->json();
+    }
+
+    /**
      * TOP KILLS
      * Retrieve the top kills for a specific server or user.
      *
