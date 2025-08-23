@@ -21,7 +21,7 @@ class DcsServerBotApiCommand extends Command
 
         // Normalize the API URL
         if (! preg_match('/^https?:\/\//', $apiUrl)) {
-            $apiUrl = 'http://'.$apiUrl;
+            $apiUrl = 'http://' . $apiUrl;
         }
         // Add default port if not present
         $parsed = parse_url($apiUrl);
@@ -33,12 +33,16 @@ class DcsServerBotApiCommand extends Command
             $apiUrl .= ':9876';
         }
 
+        // Ask for API key (optional but recommended)
+        $apiKey = $this->ask('Enter your DCS Server Bot API Key (optional but HIGHLY recommended)', '');
+
         $envPath = base_path('.env');
-        $comment = '# DCS Server Bot Websockets API URL';
+        $commentUrl = '# DCS Server Bot Websockets API URL';
+        $commentKey = '# DCS Server Bot API Key';
 
         $envContent = file_exists($envPath) ? file_get_contents($envPath) : '';
 
-        // Check if DCS_BOT_API_URL is already set
+        // Handle DCS_BOT_API_URL
         if (preg_match('/^(# DCS Server Bot Websockets API URL\s*)?^DCS_BOT_API_URL=.*$/m', $envContent, $matches)) {
             $currentValue = '';
             if (preg_match('/^DCS_BOT_API_URL=(.*)$/m', $envContent, $valMatch)) {
@@ -68,12 +72,61 @@ class DcsServerBotApiCommand extends Command
             // Overwrite existing value and comment (replace both comment and env line)
             $envContent = preg_replace(
                 '/(^# DCS Server Bot Websockets API URL\s*)?^DCS_BOT_API_URL=.*$/m',
-                "{$comment}\nDCS_BOT_API_URL={$apiUrl}",
+                "{$commentUrl}\nDCS_BOT_API_URL={$apiUrl}",
                 $envContent
             );
         } else {
             // Add new value
-            $envContent .= "\n{$comment}\nDCS_BOT_API_URL={$apiUrl}\n";
+            $envContent .= "\n{$commentUrl}\nDCS_BOT_API_URL={$apiUrl}\n";
+        }
+
+        // Handle DCS_SERVER_BOT_API_KEY (optional)
+        if ($apiKey !== '') {
+            $keyExists = preg_match('/^(# DCS Server Bot API Key\s*)?^DCS_BOT_API_KEY=.*$/m', $envContent);
+            $currentKey = '';
+            if ($keyExists && preg_match('/^DCS_BOT_API_KEY=(.*)$/m', $envContent, $keyMatch)) {
+                $currentKey = $keyMatch[1];
+            }
+
+            $keyArray = [
+                'Current Value' => $currentKey,
+                'New Value' => $apiKey,
+            ];
+
+            if ($keyExists && ! $force) {
+                $this->newLine();
+                $this->alert('WARNING: You are about to overwrite the existing DCS_BOT_API_KEY!');
+                $this->question('Are you sure you want to overwrite the existing API Key?');
+                $this->table(
+                    ['Current Config', 'Newly Provided'],
+                    [$keyArray]
+                );
+                if (! $this->confirm('Proceed?', false)) {
+                    $this->info('No changes made to API Key.');
+                } else {
+                    // Overwrite existing value and comment (replace both comment and env line)
+                    $envContent = preg_replace(
+                        '/(^# DCS Server Bot API Key\s*)?^DCS_BOT_API_KEY=.*$/m',
+                        "{$commentKey}\nDCS_BOT_API_KEY={$apiKey}",
+                        $envContent
+                    );
+                    $this->info('DCS_BOT_API_KEY set in .env file.');
+                }
+            } else {
+                // Add new value or force overwrite
+                if ($keyExists) {
+                    $envContent = preg_replace(
+                        '/(^# DCS Server Bot API Key\s*)?^DCS_BOT_API_KEY=.*$/m',
+                        "{$commentKey}\nDCS_SERVER_BOT_API_KEY={$apiKey}",
+                        $envContent
+                    );
+                } else {
+                    $envContent .= "\n{$commentKey}\nDCS_BOT_API_KEY={$apiKey}\n";
+                }
+                $this->info('DCS_SERVER_BOT_API_KEY set in .env file.');
+            }
+        } else {
+            $this->warn('No API key set. It is HIGHLY recommended to set one for security.');
         }
 
         file_put_contents($envPath, $envContent);

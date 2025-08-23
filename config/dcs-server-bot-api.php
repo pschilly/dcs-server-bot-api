@@ -18,5 +18,6 @@ return [
     */
 
     'base_url' => env('DCS_BOT_API_URL', 'http://localhost:9876'),
+    'api_key' => env('DCS_BOT_API_KEY', ''),
 
 ];

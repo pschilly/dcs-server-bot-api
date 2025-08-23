@@ -7,13 +7,20 @@ use Illuminate\Support\Facades\Http;
 class DcsServerBotApi
 {
     protected static string $baseUrl;
+    protected static string $apiKey;
 
-    public function __construct(?string $baseUrl = null)
+    public function __construct(?string $baseUrl = null, ?string $apiKey = null)
     {
         if ($baseUrl) {
             self::$baseUrl = $baseUrl;
         } else {
             self::$baseUrl = config('dcs-server-bot-api.base_url');
+        }
+
+        if ($apiKey) {
+            self::$apiKey = $apiKey;
+        } else {
+            self::$apiKey = config('dcs-server-bot-api.api_key');
         }
     }
 
@@ -28,6 +35,30 @@ class DcsServerBotApi
 
         return self::$baseUrl;
     }
+
+    /**
+     * Get the API Key
+     */
+    public static function getApiKey(): string
+    {
+        if (! isset(self::$apiKey) || empty(self::$apiKey)) {
+            self::$apiKey = config('dcs-server-bot-api.api_key');
+        }
+
+        return self::$apiKey;
+    }
+
+    protected static function apiCall(): \Illuminate\Http\Client\PendingRequest
+    {
+        $apiKey = self::getApiKey();
+
+        if (empty($apiKey)) {
+            return Http::baseUrl(self::getBaseUrl());
+        } else {
+            return Http::withToken($apiKey)->baseUrl(self::getBaseUrl());
+        }
+    }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +88,7 @@ class DcsServerBotApi
      */
     public static function getServerStats(?string $server_name = null, string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/serverstats', [
+        $response = self::apiCall()->get('/serverstats', [
             'server_name' => $server_name,
         ]);
 
@@ -93,7 +124,7 @@ class DcsServerBotApi
      */
     public static function getServerList(string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/servers');
+        $response = self::apiCall()->get('/servers');
 
         if ($returnType === 'collection') {
             return $response->collect();
@@ -112,7 +143,7 @@ class DcsServerBotApi
      */
     public static function getSquadronList(?int $limit = null, ?int $offset = null, string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/squadrons', [
+        $response = self::apiCall()->get('/squadrons', [
             'limit' => $limit,
             'offset' => $offset,
         ]);
@@ -135,7 +166,7 @@ class DcsServerBotApi
      */
     public static function getSquadronMembers(string $squadronName, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/squadron_members', ['name' => $squadronName]);
+        $response = self::apiCall()->asForm()->post('/squadron_members', ['name' => $squadronName]);
 
         if ($returnType === 'collection') {
             return $response->collect();
@@ -155,7 +186,7 @@ class DcsServerBotApi
      */
     public static function getUser(string $nick, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/getuser', ['nick' => $nick]);
+        $response = self::apiCall()->asForm()->post('/getuser', ['nick' => $nick]);
 
         if ($returnType === 'collection') {
             return $response->collect();
@@ -181,7 +212,7 @@ class DcsServerBotApi
      */
     public static function linkMe(string $discord_id, ?bool $force = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/linkme', [
+        $response = self::apiCall()->asForm()->post('/linkme', [
             'discord_id' => $discord_id,
             'force' => $force,
         ]);
@@ -205,7 +236,7 @@ class DcsServerBotApi
      */
     public static function getPlayerSquadrons(string $nick, ?string $date = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/player_squadrons', [
+        $response = self::apiCall()->asForm()->post('/player_squadrons', [
             'nick' => $nick,
             'date' => $date,
         ]);
@@ -237,7 +268,7 @@ class DcsServerBotApi
      */
     public static function getLeaderboard(?string $what = 'kills', ?string $order = 'desc', ?string $server_name = null, ?int $limit = 10, ?int $offset = 0, string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/leaderboard', [
+        $response = self::apiCall()->get('/leaderboard', [
             'what' => $what,
             'order' => $order,
             'limit' => $limit,
@@ -270,7 +301,7 @@ class DcsServerBotApi
      */
     public static function getTopKills(?string $server_name = null, ?int $limit = null, ?int $offset = null, string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/topkills', [
+        $response = self::apiCall()->get('/topkills', [
             'server_name' => $server_name,
             'limit' => $limit,
             'offset' => $offset,
@@ -295,7 +326,7 @@ class DcsServerBotApi
      */
     public static function getTopKDR(?string $server_name = null, ?int $limit = null, ?int $offset = null, string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/topkdr', [
+        $response = self::apiCall()->get('/topkdr', [
             'server_name' => $server_name,
             'limit' => $limit,
             'offset' => $offset,
@@ -321,7 +352,7 @@ class DcsServerBotApi
      */
     public static function getTrueSkillStats(?string $server_name = null, ?int $limit = null, ?int $offset = null, string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/trueskill', [
+        $response = self::apiCall()->get('/trueskill', [
             'server_name' => $server_name,
             'limit' => $limit,
             'offset' => $offset,
@@ -347,7 +378,7 @@ class DcsServerBotApi
      */
     public static function getWeaponPK(?string $server_name, string $nick, ?string $date = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/weaponpk', [
+        $response = self::apiCall()->asForm()->post('/weaponpk', [
             'nick' => $nick,
             'server_name' => $server_name,
             'date' => $date,
@@ -373,7 +404,7 @@ class DcsServerBotApi
      */
     public static function getStats(?string $server_name, string $nick, ?string $date = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/stats', [
+        $response = self::apiCall()->asForm()->post('/stats', [
             'nick' => $nick,
             'date' => $date,
             'server_name' => $server_name,
@@ -399,7 +430,7 @@ class DcsServerBotApi
      */
     public static function getPlayerInfo(?string $server_name, string $nick, ?string $date = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/player_info', [
+        $response = self::apiCall()->asForm()->post('/player_info', [
             'nick' => $nick,
             'server_name' => $server_name,
             'date' => $date,
@@ -425,7 +456,7 @@ class DcsServerBotApi
      */
     public static function getHighscore(?string $server_name = null, ?int $limit = null, ?string $period = null, string $returnType = 'json'): mixed
     {
-        $response = Http::baseUrl(self::getBaseUrl())->get('/highscore', [
+        $response = self::apiCall()->get('/highscore', [
             'server_name' => $server_name,
             'limit' => $limit,
             'period' => $period,
@@ -452,7 +483,7 @@ class DcsServerBotApi
      */
     public static function getTraps(string $nick, ?string $server_name = null, ?int $limit = null, ?int $offset = null, ?string $date = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/traps', [
+        $response = self::apiCall()->asForm()->post('/traps', [
             'nick' => $nick,
             'date' => $date,
             'limit' => $limit,
@@ -480,7 +511,7 @@ class DcsServerBotApi
      */
     public static function getCredits(string $nick, ?string $date = null, ?string $campaign = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/credits', [
+        $response = self::apiCall()->asForm()->post('/credits', [
             'nick' => $nick,
             'date' => $date,
             'campaign' => $campaign,
@@ -505,7 +536,7 @@ class DcsServerBotApi
      */
     public static function getSquadronCredits(string $name, ?string $campaign = null, string $returnType = 'json'): mixed
     {
-        $response = Http::asForm()->baseUrl(self::getBaseUrl())->post('/squadron_credits', [
+        $response = self::apiCall()->asForm()->post('/squadron_credits', [
             'name' => $name,
             'campaign' => $campaign,
         ]);
