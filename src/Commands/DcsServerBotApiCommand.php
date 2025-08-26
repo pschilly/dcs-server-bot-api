@@ -21,7 +21,7 @@ class DcsServerBotApiCommand extends Command
 
         // Normalize the API URL
         if (! preg_match('/^https?:\/\//', $apiUrl)) {
-            $apiUrl = 'http://' . $apiUrl;
+            $apiUrl = 'http://'.$apiUrl;
         }
         // Add default port if not present
         $parsed = parse_url($apiUrl);

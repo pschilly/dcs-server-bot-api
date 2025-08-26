@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 class DcsServerBotApi
 {
     protected static string $baseUrl;
+
     protected static string $apiKey;
 
     public function __construct(?string $baseUrl = null, ?string $apiKey = null)
@@ -60,7 +61,6 @@ class DcsServerBotApi
             return Http::withHeaders(['X-API-Key' => $apiKey])->baseUrl(self::getBaseUrl());
         }
     }
-
 
     /*
     |--------------------------------------------------------------------------
