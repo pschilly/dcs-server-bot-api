@@ -55,7 +55,9 @@ class DcsServerBotApi
         if (empty($apiKey)) {
             return Http::baseUrl(self::getBaseUrl());
         } else {
-            return Http::withToken($apiKey)->baseUrl(self::getBaseUrl());
+            // return Http::withToken($apiKey)->baseUrl(self::getBaseUrl());
+
+            return Http::withHeaders(['X-API-Key' => $apiKey])->baseUrl(self::getBaseUrl());
         }
     }
 
